@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             // Instantiate bullet
-            GameObject currBullet = Instantiate(bullet, muzzle.position, quaternion.identity);
+            GameObject currBullet = Instantiate(bullet, muzzle.position, transform.rotation);
             // Get direction from player to mouse
             Vector3 dir = (ray.origin - transform.position).normalized;
             currBullet.GetComponent<Rigidbody2D>().AddForce(dir * _bulletForce);
