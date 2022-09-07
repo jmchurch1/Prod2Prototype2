@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
 
     public Transform muzzle;
+    
 
     [SerializeField] private float _bulletForce = 5f;
     // Update is called once per frame

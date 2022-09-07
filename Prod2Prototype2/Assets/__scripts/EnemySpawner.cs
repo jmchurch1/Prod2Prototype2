@@ -36,7 +36,10 @@ public class EnemySpawner : MonoBehaviour
         {
             float randOffset1 = Random.Range(-2, 2);
             float randOffset2 = Random.Range(-2, 2);
-            Instantiate(enemy, new Vector3(x + randOffset1, y + randOffset2, 0f), Quaternion.identity);
+            GameObject currEnemy = Instantiate(enemy, new Vector3(x + randOffset1, y + randOffset2, 0f), Quaternion.identity);
+            
+            // add enemy to list of enemies
+            ScoreCounter.ScoreInstance.AddEnemy(currEnemy);
         }
         
         // recall spawn enemies

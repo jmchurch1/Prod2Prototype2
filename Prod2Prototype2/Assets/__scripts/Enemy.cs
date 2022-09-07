@@ -14,7 +14,11 @@ public class Enemy : MonoBehaviour
         gameObject.transform.position -= dir * _speed * Time.deltaTime;
         // if the health of the enemy is less than 0 destroy it
         if (_health <= 0)
+        {
+            // remove enemy from list of enemies (also increment kill counter)
+            ScoreCounter.ScoreInstance.RemoveEnemy(gameObject);
             Destroy(gameObject);
+        }
     }
 
     public void DecrementHealth(float damage)
