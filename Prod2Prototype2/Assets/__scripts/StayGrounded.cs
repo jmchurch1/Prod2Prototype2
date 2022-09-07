@@ -1,0 +1,27 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StayGrounded : MonoBehaviour
+{
+    private Vector3 _homePosition;
+
+    [SerializeField] private float _homewardForce = .5f;
+    
+    private void Awake()
+    {
+        _homePosition = gameObject.transform.position;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // find out if the ball is at its home position
+        if (gameObject.transform.position != _homePosition)
+        {
+            Vector3 direction = (gameObject.transform.position - _homePosition).normalized;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(direction);
+        }
+    }
+}
