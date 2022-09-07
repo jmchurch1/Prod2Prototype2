@@ -350,8 +350,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2021859045}
   - component: {fileID: 2021859044}
+  - component: {fileID: 2021859046}
   m_Layer: 0
-  m_Name: FogSpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,6 +388,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2021859046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021859043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553a6f0041644b2499ad01d521b3aa2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 4107640802401083177, guid: 4afeaf770094ce240bd444c74725cee9, type: 3}
+  _spawnRate: 4
+  _enemyAmount: 10
 --- !u!1 &2044579393
 GameObject:
   m_ObjectHideFlags: 0
