@@ -20,8 +20,8 @@ public class StayGrounded : MonoBehaviour
         // find out if the ball is at its home position
         if (gameObject.transform.position != _homePosition)
         {
-            Vector3 direction = (gameObject.transform.position - _homePosition).normalized;
-            gameObject.GetComponent<Rigidbody2D>().AddForce(direction);
+            Vector3 direction = (_homePosition - gameObject.transform.position).normalized;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(direction * _homewardForce);
         }
     }
 }

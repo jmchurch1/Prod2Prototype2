@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject bullet;
+
+    public Transform muzzle;
+
+    [SerializeField] private float _bulletForce = 5f;
     // Update is called once per frame
     void Update()
     {
@@ -16,5 +22,14 @@ public class Player : MonoBehaviour
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
         // Rotate Object
         transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            // Instantiate bullet
+            GameObject currBullet = Instantiate(bullet, muzzle.position, quaternion.identity);
+            // Get direction from player to mouse
+            Vector3 dir = (ray.origin - transform.position).normalized;
+            currBullet.GetComponent<Rigidbody2D>().AddForce(dir * _bulletForce);
+        }
     }
 }

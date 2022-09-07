@@ -30,11 +30,6 @@ public class SpawnFogBalls : MonoBehaviour
                 {
                     Destroy(currBall);
                 }
-                else
-                {
-                    currBall.AddComponent<Collider2D>();
-                    currBall.AddComponent<Rigidbody2D>().gravityScale = 0;
-                }
             }
         }
     }
