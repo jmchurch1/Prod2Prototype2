@@ -8,6 +8,11 @@ public class Player : MonoBehaviour
     public GameObject bullet;
 
     public Transform muzzle;
+
+    [SerializeField] private float _shotWaitTime = .1f;
+    private bool _waitingShot = false;
+    
+    
     
 
     [SerializeField] private float _bulletForce = 5f;
@@ -24,13 +29,23 @@ public class Player : MonoBehaviour
         // Rotate Object
         transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
-            // Instantiate bullet
-            GameObject currBullet = Instantiate(bullet, muzzle.position, transform.rotation);
-            // Get direction from player to mouse
-            Vector3 dir = (ray.origin - transform.position).normalized;
-            currBullet.GetComponent<Rigidbody2D>().AddForce(dir * _bulletForce);
+            if (!_waitingShot)
+                StartCoroutine("Shoot", ray);
         }
+    }
+
+    private IEnumerator Shoot(Ray ray)
+    {
+        _waitingShot = true;
+        yield return new WaitForSeconds(_shotWaitTime);
+        // Instantiate bullet
+        GameObject currBullet = Instantiate(bullet, muzzle.position, transform.rotation);
+        // Get direction from player to mouse
+        Vector3 dir = (ray.origin - transform.position).normalized;
+        currBullet.GetComponent<Rigidbody2D>().AddForce(dir * _bulletForce);
+        // reset waiting shot bool
+        _waitingShot = false;
     }
 }

@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5221466754030988198, guid: c3a7d75b173ec5a4793c78dcd7c6575c, type: 3}
   muzzle: {fileID: 1921930724}
+  _shotWaitTime: 0.1
   _bulletForce: 1000
 --- !u!1 &1675604745
 GameObject:
