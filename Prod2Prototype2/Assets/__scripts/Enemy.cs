@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,14 @@ public class Enemy : MonoBehaviour
             // remove enemy from list of enemies (also increment kill counter)
             ScoreCounter.ScoreInstance.RemoveEnemy(gameObject);
             Destroy(gameObject);
+        }
+        
+        // get location with accuracy of two decimal points
+        if (new Vector3( Mathf.Round(transform.position.x * 100f) / 100f,
+            Mathf.Round(transform.position.x * 100f) / 100f,
+            Mathf.Round(transform.position.x * 100f) / 100f) == new Vector3(0f, 0f, 0f))
+        {
+            Destroy(GameObject.Find("Player"));
         }
     }
 

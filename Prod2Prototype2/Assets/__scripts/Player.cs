@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -8,6 +9,8 @@ public class Player : MonoBehaviour
     public GameObject bullet;
 
     public Transform muzzle;
+
+    public AudioSource bulletSound;
 
     [SerializeField] private float _shotWaitTime = .1f;
     private bool _waitingShot = false;
@@ -40,6 +43,8 @@ public class Player : MonoBehaviour
     {
         _waitingShot = true;
         yield return new WaitForSeconds(_shotWaitTime);
+        // play bullet shot sound
+        bulletSound.Play();
         // Instantiate bullet
         GameObject currBullet = Instantiate(bullet, muzzle.position, transform.rotation);
         // Get direction from player to mouse
