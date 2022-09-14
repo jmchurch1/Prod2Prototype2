@@ -25,8 +25,9 @@ public class Player : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         // https://answers.unity.com/questions/760900/how-can-i-rotate-a-gameobject-around-z-axis-to-fac.html
+        Vector3 currPlayerPos = gameObject.transform.position;
         // Get Angle in Radians
-        float AngleRad = Mathf.Atan2(ray.origin.y, ray.origin.x);
+        float AngleRad = Mathf.Atan2(ray.origin.y - currPlayerPos.y, ray.origin.x - currPlayerPos.x);
         // Get Angle in Degrees
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
         // Rotate Object
