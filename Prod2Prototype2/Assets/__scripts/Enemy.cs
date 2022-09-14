@@ -7,21 +7,24 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _health = 10f;
     [SerializeField] private float _speed = 5f;
+
+    private GameObject player;
     
     private float _maxHealth;
 
     void Awake()
     {
+        player = GameObject.Find("Player");
         // set max health
         _maxHealth = _health;
-        
+
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 102);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = (gameObject.transform.position - new Vector3(0, 0, 0)).normalized;
+        Vector3 dir = (gameObject.transform.position - player.transform.position).normalized;
         gameObject.transform.position -= dir * _speed * Time.deltaTime;
         // if the health of the enemy is less than 0 destroy it
         if (_health <= 0)
@@ -34,7 +37,7 @@ public class Enemy : MonoBehaviour
         // get location with accuracy of two decimal points
         if (new Vector3( Mathf.Round(transform.position.x * 100f) / 100f,
             Mathf.Round(transform.position.x * 100f) / 100f,
-            Mathf.Round(transform.position.x * 100f) / 100f) == new Vector3(0f, 0f, 0f))
+            Mathf.Round(transform.position.x * 100f) / 100f) == player.transform.position)
         {
             Destroy(GameObject.Find("Player"));
         }
