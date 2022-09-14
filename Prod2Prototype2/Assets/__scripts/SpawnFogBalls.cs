@@ -31,15 +31,12 @@ public class SpawnFogBalls : MonoBehaviour
             {
                 Vector3 currPosition = startPosition + new Vector3(_distanceBetween * i, _distanceBetween * j, 0f);
                 GameObject currBall = Instantiate(ball, currPosition, quaternion.identity, gameObject.transform);
-                
+                _fogBalls.Add(currBall);
                 // check whether the currBall is in the designated spawn area 
                 if (Vector3.Distance(currBall.transform.position, new Vector3(0, 0, 0)) < _spawnAreaRadius)
                 {
+                    _fogBalls.Remove(currBall);
                     Destroy(currBall);
-                }
-                else
-                {
-                    _fogBalls.Add(currBall);
                 }
             }
         }
@@ -47,8 +44,10 @@ public class SpawnFogBalls : MonoBehaviour
 
     private void Update()
     {
-        foreach (GameObject currBall in _fogBalls)
+        // this will be like the least efficient way possible of doing this
+        for (int i = _fogBalls.Count - 1; i >= 0; i--)
         {
+            GameObject currBall = _fogBalls[i];
             if (Vector3.Distance(currBall.GetComponent<StayGrounded>().GetHomePosition(), _player.transform.position) > _maxDistanceFromPlayer)
             {
                 Debug.Log("Distance greater");
