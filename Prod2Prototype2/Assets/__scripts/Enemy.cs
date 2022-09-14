@@ -29,11 +29,11 @@ public class Enemy : MonoBehaviour
         }
         else if (_speed == 2)
         {
-            _health = UnityEngine.Random.Range(6, 8);
+            _health = UnityEngine.Random.Range(6, 9);
         }
         else if (_speed == 1)
         {
-            _health = UnityEngine.Random.Range(9, 10);
+            _health = UnityEngine.Random.Range(10, 14);
         }
     }
     void Awake()
@@ -49,9 +49,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-
         Vector3 dir = (gameObject.transform.position - player.transform.position).normalized;
         gameObject.transform.position -= dir * _speed * Time.deltaTime;
         // if the health of the enemy is less than 0 destroy it
@@ -75,6 +72,7 @@ public class Enemy : MonoBehaviour
     {
         _health -= damage;
         // change the color of enemy on hit
+
         //Commenting this out in case what I do doesn't work
         /*float currPercentage = _health / _maxHealth;
         if (currPercentage >= .75f)
