@@ -24,4 +24,9 @@ public class StayGrounded : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().AddForce(direction * _homewardForce);
         }
     }
+
+    public Vector3 GetHomePosition()
+    {
+        return _homePosition;
+    }
 }

@@ -831,6 +831,7 @@ MonoBehaviour:
   ball: {fileID: 2615422619057408918, guid: b24f1b5e45845844f9e48a2aca5c0ed0, type: 3}
   _amountBalls: 50
   _spawnAreaRadius: 3
+  _maxDistanceFromPlayer: 40
 --- !u!4 &2021859045
 Transform:
   m_ObjectHideFlags: 0
