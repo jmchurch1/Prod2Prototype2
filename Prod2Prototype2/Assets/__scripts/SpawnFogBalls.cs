@@ -43,9 +43,9 @@ public class SpawnFogBalls : MonoBehaviour
             }
         }
         
-        InvokeRepeating("ProceduralGeneration",0f,2f);
+        //InvokeRepeating("ProceduralGeneration",0f,2f);
     }
-
+/*
     private void Update()
     {
         // loop through balls, checking whether they are too far away or not
@@ -84,4 +84,5 @@ public class SpawnFogBalls : MonoBehaviour
             }
         }
     }
+    */
 }
