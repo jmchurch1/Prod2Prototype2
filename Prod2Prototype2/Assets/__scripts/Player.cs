@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     
     
 
-    [SerializeField] private float _bulletForce = 5f;
+    private float _bulletForce = 500f;
     // Update is called once per frame
     void Update()
     {

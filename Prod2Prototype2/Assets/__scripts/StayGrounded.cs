@@ -7,7 +7,7 @@ public class StayGrounded : MonoBehaviour
 {
     private Vector3 _homePosition;
 
-    [SerializeField] private float _homewardForce = .5f;
+    private float _homewardForce = .1f;
     
     private void Awake()
     {

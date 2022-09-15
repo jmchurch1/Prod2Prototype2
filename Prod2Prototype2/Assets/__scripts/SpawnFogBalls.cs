@@ -12,9 +12,9 @@ public class SpawnFogBalls : MonoBehaviour
     private List<GameObject> _fogBalls = new List<GameObject>();
     private List<Vector3> _ballPositions = new List<Vector3>();
     
-    [SerializeField] private int _amountBalls = 30;
-    [SerializeField] private float _spawnAreaRadius = 5;
-    private float _distanceBetween = .6f;
+    private int _amountBalls = 30;
+    private float _spawnAreaRadius = 5;
+    private float _distanceBetween = 1;
     private float _maxDistanceFromPlayer = 20;
 
     // Start is called before the first frame update
@@ -22,30 +22,35 @@ public class SpawnFogBalls : MonoBehaviour
     {
         _player = GameObject.Find("Player");
         
-        float halfBallDistance = (_amountBalls / 2f) * _distanceBetween;
-        Vector3 startPosition = new Vector3(-halfBallDistance, -halfBallDistance, 0f);
+        // Spawn the balls around the player
+        SpawnBalls();
+        
+        //InvokeRepeating("ProceduralGeneration",0f,2f);
+    }
+
+    private void SpawnBalls()
+    {
+        float halfBallDistance = (_amountBalls / 2f);
+        int playerPositionX = (int) (Math.Round( _player.transform.position.x/_distanceBetween) * _distanceBetween);
+        int playerPositionY = (int) (Math.Round( _player.transform.position.y/_distanceBetween) * _distanceBetween);
+        Vector3 startPosition = new Vector3(-halfBallDistance, -halfBallDistance, 0f) + new Vector3(playerPositionX, playerPositionY, 0f);
 
         for (int i = 0; i < _amountBalls; i++)
         {
             for (int j = 0; j < _amountBalls; j++)
             {
                 Vector3 currPosition = startPosition + new Vector3(i * _distanceBetween, j * _distanceBetween, 0f);
+                // check if the balls position is currently being used or if it is in spawn radius
+                if (_ballPositions.Contains(currPosition) || Vector3.Distance(currPosition, _player.transform.position) < _spawnAreaRadius)
+                    continue;
+                
                 GameObject currBall = Instantiate(ball, currPosition, quaternion.identity, gameObject.transform);
                 _fogBalls.Add(currBall);
                 _ballPositions.Add(currBall.transform.position);
-                // check whether the currBall is in the designated spawn area 
-                if (Vector3.Distance(currBall.transform.position, new Vector3(0, 0, 0)) < _spawnAreaRadius)
-                {
-                    _fogBalls.Remove(currBall);
-                    _ballPositions.Remove(currBall.transform.position);
-                    Destroy(currBall);
-                }
             }
         }
-        
-        //InvokeRepeating("ProceduralGeneration",0f,2f);
     }
-/*
+
     private void Update()
     {
         // loop through balls, checking whether they are too far away or not
@@ -62,8 +67,10 @@ public class SpawnFogBalls : MonoBehaviour
                 Destroy(currBall);
             }
         }
+        
+        SpawnBalls();
     }
-
+/*
     void ProceduralGeneration()
     {
         float halfBallDistance = (_amountBalls / 2f) * _distanceBetween;
