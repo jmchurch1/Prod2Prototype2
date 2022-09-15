@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 1523768688}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -651,7 +651,6 @@ MonoBehaviour:
   muzzle: {fileID: 1921930724}
   bulletSound: {fileID: 1523768684}
   _shotWaitTime: 0.07
-  _bulletForce: 50
 --- !u!82 &1523768684
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1084,8 +1083,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 2615422619057408918, guid: b24f1b5e45845844f9e48a2aca5c0ed0, type: 3}
-  _amountBalls: 50
-  _spawnAreaRadius: 3
 --- !u!4 &2021859045
 Transform:
   m_ObjectHideFlags: 0

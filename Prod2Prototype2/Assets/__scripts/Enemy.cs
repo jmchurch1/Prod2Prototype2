@@ -65,14 +65,6 @@ public class Enemy : MonoBehaviour
             ScoreCounter.ScoreInstance.RemoveEnemy(gameObject);
             Destroy(gameObject);
         }
-        
-        // get location with accuracy of two decimal points
-        if (new Vector3( Mathf.Round(transform.position.x * 100f) / 100f,
-            Mathf.Round(transform.position.x * 100f) / 100f,
-            Mathf.Round(transform.position.x * 100f) / 100f) == player.transform.position)
-        {
-            Destroy(GameObject.Find("Player"));
-        }
     }
 
     public void DecrementHealth(float damage)

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -37,6 +39,15 @@ public class Player : MonoBehaviour
         {
             if (!_waitingShot)
                 StartCoroutine("Shoot", ray);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("trigger entered");
+        if (other.CompareTag("Enemy") || other.CompareTag("Fog"))
+        {
+            SceneManager.LoadScene(1);
         }
     }
 
