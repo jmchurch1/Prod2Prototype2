@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,24 +17,30 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         //_health = UnityEngine.Random.Range(1, 10);
-        _speed = UnityEngine.Random.Range(1, 4);
+        _speed = Random.Range(1, 4);
 
         //What Caleb added to try and have different health values at different speeds
         if (_speed == 4)
         {
-            _health = UnityEngine.Random.Range(1, 2);
+            _health = Random.Range(1, 2);
         }
         else if (_speed == 3)
         {
-            _health = UnityEngine.Random.Range(3, 5);
+            _health = Random.Range(3, 5);
         }
         else if (_speed == 2)
         {
-            _health = UnityEngine.Random.Range(6, 9);
+            _health = Random.Range(6, 9);
         }
         else if (_speed == 1)
         {
-            _health = UnityEngine.Random.Range(10, 14);
+            _health = Random.Range(10, 14);
+        }
+
+        float colliderChance = Random.Range(0, 4);
+        if (colliderChance < 1)
+        {
+            gameObject.AddComponent<CircleCollider2D>().radius = .4f;
         }
     }
     void Awake()
